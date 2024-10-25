@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Art &amp; Handmade Craft Site</title> <!-- FontAwesome CDN for Social Media Icons --> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff; /* Base background color */
+      color: #333; /* Default text color */
+    }
+
+    /* Main Layout */
+    .container {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Sidebar (fullscreen overlay when active) */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(157, 129, 137, 0.95); /* Semi-transparent overlay using darker palette color */
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    /* Sidebar active state */
+    .sidebar.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    /* Centering sidebar content */
+    .sidebar ul {
+      list-style: none;
+      text-align: center;
+      margin-bottom: auto;
+    }
+
+    .sidebar ul li {
+      padding: 20px;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    .sidebar ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .sidebar ul li a:hover {
+      color: #ffcad4; /* Light pink hover effect */
+    }
+
+    /* Social media icons */
+    .sidebar .social-media {
+      margin-top: auto;
+      padding-bottom: 20px;
+    }
+
+    .sidebar .social-media a {
+      color: #ffffff;
+      font-size: 24px;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+
+    .sidebar .social-media a:hover {
+      color: #ffcad4; /* Hover color */
+    }
+
+    /* Main content */
+    .main-content {
+      padding: 20px;
+    }
+
+    /* Logo */
+    .logo {
+      width: 100px;
+      margin: 20px auto;
+    }
+
+    /* Menu button (hamburger icon) */
+    .menu-btn {
+      font-size: 30px;
+      margin: 20px;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      z-index: 100;
+      color: #9d8189; /* Dark palette color for the menu icon */
+    }
+
+    /* Section Styles */
+    section {
+      padding: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: #f4acb7; /* Use lighter pink for section titles */
+    }
+
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .image-gallery img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* About Section */
+    #about {
+      padding: 50px 20px;
+      background-color: #f4acb7; /* Background with soft pink */
+      color: #ffffff;
+      text-align: center;
+    }
+
+    #about img {
+      width: 150px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    #about p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #d8e2dc; /* Muted soft background for footer */
+      color: #333;
+    }
+
+    footer .social-icons {
+      margin-bottom: 10px;
+    }
+
+    footer .social-icons a {
+      color: #333;
+      font-size: 24px;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer .social-icons a:hover {
+      color: #f4acb7;
+    }
+
+    footer p {
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .sidebar ul li {
+        font-size: 20px;
+      }
+
+      .image-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+
+      #about p {
+        font-size: 16px;
+      }
+    }
+  </style> 
+ </head> 
+ <body> <!-- Logo and Menu Button --> 
+  <header> 
+   <img class="logo" src="/mnt/data/file-ZNR6mzLrPCuutIHaCHATUP2z" alt="Logo"> <span class="menu-btn" onclick="toggleMenu()">☰</span> 
+  </header> <!-- Sidebar and Main Content --> 
+  <div class="container"> 
+   <nav class="sidebar" id="sidebar"> 
+    <ul> 
+     <li><a href="#about" onclick="closeSidebar()">About</a></li> 
+     <li><a href="#art-section" onclick="closeSidebar()">Art</a></li> 
+     <li><a href="#craft-section" onclick="closeSidebar()">Handmade Craft</a></li> 
+     <li><a href="#contact" onclick="closeSidebar()">Contact</a></li> 
+    </ul> <!-- Social Media Icons in Sidebar --> 
+    <div class="social-media"> <a href="https://www.instagram.com" target="_blank" class="fab fa-instagram"></a> <a href="https://www.facebook.com" target="_blank" class="fab fa-facebook"></a> 
+    </div> 
+   </nav> <!-- About Section --> 
+   <section id="about"> 
+    <img src="/mnt/data/file-eO3jkaDNqH5yGBmTu9BD9A7H" alt="Evelyn Tan"> 
+    <p> Evelyn Tan is a Vancouverite artist currently based in Los Angeles. Her works explore the deviations of identity in womanhood, pulling from dreams, memories, and fables across various diasporas. Despite growing up as an only child, she portrays herself as fragmented ‘sister selves’, alongside a compounding world of characters and symbols. These avatars augment pertinent character traits that she grapples with, positing them in an endless tail-chase for sovereignty. The resulting tableaux are at once whimsical and grotesque—meticulous displays of ironic and highly narrative scenarios. </p> 
+   </section> <!-- Art Section --> 
+   <main class="main-content"> 
+    <section id="art-section"> 
+     <h2 class="section-title">Art</h2> 
+     <div class="image-gallery"> <!-- Add your 6 art images here --> 
+      <img src="/mnt/data/file-mccIykR1LnKthwCTGrQCVYrh" alt="Art Image 1"> 
+      <img src="/mnt/data/file-yII5zJ1v4ez85exrmGWnwAaX" alt="Art Image 2"> 
+      <img src="/mnt/data/file-yII5zJ1v4ez85exrmGWnwAaX" alt="Art Image 3"> 
+      <img src="/mnt/data/file-yII5zJ1v4ez85exrmGWnwAaX" alt="Art Image 4"> 
+      <img src="/mnt/data/file-yII5zJ1v4ez85exrmGWnwAaX" alt="Art Image 5"> 
+      <img src="/mnt/data/file-yII5zJ1v4ez85exrmGWnwAaX" alt="Art Image 6"> 
+     </div> 
+    </section> <!-- Handmade Craft Section --> 
+    <section id="craft-section"> 
+     <h2 class="section-title">Handmade Craft</h2> 
+     <div class="image-gallery"> <!-- Add your 6 handmade craft images here --> 
+      <img src="/mnt/data/file-mccIykR1LnKthwCTGrQCVYrh" alt="Craft Image 1"> 
+      <img src="/mnt/data/file-mccIykR1LnKthwCTGrQCVYrh" alt="Craft Image 2"> 
+      <img src="/mnt/data/file-mccIykR1LnKthwCTGrQCVYrh" alt="Craft Image 3"> 
+      <img src="/mnt/data/file-mccIykR1LnKthwCTGrQCVYrh" alt="Craft Image 4"> 
+      <img src="/mnt/data/file-mccIykR1LnKthwCTGrQCVYrh" alt="Craft Image 5"> 
+      <img src="/mnt/data/file-mccIykR1LnKthwCTGrQCVYrh" alt="Craft Image 6"> 
+     </div> 
+    </section> <!-- Contact Section --> 
+    <section id="contact"> 
+     <h2 class="section-title">Contact</h2> 
+     <p style="text-align:center;"> If you would like to get in touch or inquire about custom pieces, feel free to contact me: </p> 
+     <div style="text-align:center;"> <a href="mailto:evelyntan@example.com" style="font-size:18px; text-decoration:none; color:#333;"> <i class="fas fa-envelope"></i> evelyntan@example.com </a> 
+     </div> 
+    </section> 
+   </main> <!-- Footer --> 
+   <footer> 
+    <div class="social-icons"> <a href="https://www.instagram.com" target="_blank" class="fab fa-instagram"></a> <a href="https://www.facebook.com" target="_blank" class="fab fa-facebook"></a> 
+    </div> 
+    <p>© 2024 Evelyn Tan. All rights reserved.</p> 
+   </footer> 
+  </div> <!-- JavaScript to handle sidebar toggle --> 
+  <script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('active');
+    }
+  </script> 
+ </body>
+  </html>
